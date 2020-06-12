@@ -3,13 +3,13 @@ const path = require("path")
 const isDevelopment = process.env.NODE_ENV === 'development'
 //var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;// ...
 const CompressionPlugin = require('compression-webpack-plugin');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let plugins;
 
 if(isDevelopment) {
     plugins = []
 } else {
-    plugins = [new CompressionPlugin()]
+    plugins = [new CompressionPlugin(),new MiniCssExtractPlugin()]
 }
 
 module.exports = {
@@ -46,7 +46,8 @@ module.exports = {
                         options: {
                             sourceMap: isDevelopment
                         }
-                    }
+                    },
+                    MiniCssExtractPlugin.loader
                 ]
 
             },
