@@ -7,7 +7,7 @@ webpack(webpackConfig,(err,stats)=> {
     server.sendMessageToWS("refresh")
 })
 
-var server =  Server(80,true)
+var server =  Server(8080,true)
 
 server.start()
 

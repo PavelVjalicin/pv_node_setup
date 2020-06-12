@@ -6,6 +6,7 @@ class Server {
         this.port = _port
         this.app = new Express()
         this.sockets = []
+        this.isDev = isDev
         this.expressWS = require("express-ws")(this.app);
         const appOptions = {
             root: path.join(__dirname)
@@ -14,6 +15,7 @@ class Server {
         this.app.get("/",(req,res) => {
             res.sendFile("src/index.html",appOptions)
         })
+        
         if(isDev) {
             this.app.ws("/", (ws,req) => {
                 
@@ -29,7 +31,7 @@ class Server {
     }
 
     sendMessageToWS(msg) {
-        if(isDev) {
+        if(this.isDev) {
             this.expressWS.getWss().clients.forEach((socket)=>{
                 socket.send("refresh")
             })
