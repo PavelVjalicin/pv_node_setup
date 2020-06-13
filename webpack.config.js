@@ -4,6 +4,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 //var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;// ...
 const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 let plugins;
 
 if(isDevelopment) {
@@ -84,6 +85,7 @@ module.exports = {
     },
     plugins: plugins,
     optimization: {
+        minimizer: [new UglifyJsPlugin()],
         splitChunks: {
             chunks: 'all',
             automaticNameDelimiter: ".",
