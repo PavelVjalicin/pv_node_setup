@@ -5,9 +5,9 @@ import 'url-search-params-polyfill'; //safari 9 polyfill new URLSearchParams
 import "regenerator-runtime/runtime" // For core-js
 import ReactDOM from "react-dom"
 import React from "react"
-import {App} from "./App";
 import {BrowserRouter} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {App} from "./components/App";
 
 const react = document.getElementById("react")
 ReactDOM.render(<BrowserRouter>

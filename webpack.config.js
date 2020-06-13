@@ -9,7 +9,16 @@ let plugins;
 if(isDevelopment) {
     plugins = []
 } else {
-    plugins = [new CompressionPlugin(),new MiniCssExtractPlugin()]
+    plugins = [new MiniCssExtractPlugin({
+        filename: 'css/[name].css',
+        chunkFilename: '[id].css',
+
+    }),
+        new CompressionPlugin({
+            test: /\.js$|\.css$/,
+            threshold:0,
+            minRatio:1
+        })]
 }
 
 module.exports = {
@@ -33,7 +42,7 @@ module.exports = {
             {
                 test: /\.module\.s(a|c)ss$/,
                 loader: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -47,7 +56,6 @@ module.exports = {
                             sourceMap: isDevelopment
                         }
                     },
-                    MiniCssExtractPlugin.loader
                 ]
 
             },
@@ -55,7 +63,7 @@ module.exports = {
                 test: /\.s(a|c)ss$/,
                 exclude: /\.module.(s(a|c)ss)$/,
                 loader: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     {
                         loader: 'sass-loader',
@@ -68,11 +76,11 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".js", ".jsx"]
+        extensions: [".js", ".jsx",".css"]
     },
     output: {
-        path: path.resolve(__dirname, "dist/js/"),
-        filename: "[name].bundle.js"
+        path: path.resolve(__dirname, "dist/"),
+        filename: "js/[name].bundle.js"
     },
     plugins: plugins,
     optimization: {
