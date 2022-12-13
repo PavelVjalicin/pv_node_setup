@@ -27,7 +27,7 @@
     "compression-webpack-plugin": "^3.0.0",
     "core-js": "^3.6.4",
     "css-loader": "^3.4.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-ws": "^4.0.0",
     "fibers": "^4.0.2",
     "node-sass": "^4.13.1",
